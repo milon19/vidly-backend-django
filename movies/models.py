@@ -23,7 +23,8 @@ class Movie(models.Model):
     liked = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
-        self._id = generate_movie_id()
+        if not self._id:
+            self._id = generate_movie_id()
         super(Movie, self).save(*args, **kwargs)
 
     def __str__(self):

@@ -11,19 +11,6 @@ class MovieViewSet(viewsets.ModelViewSet):
     serializer_class = MovieSerializer
     permission_classes = (AllowAny, )
 
-    def update(self, request, pk=None):
-        serializer = self.serializer_class(data=request.data)
-
-        if serializer.is_valid():
-            movie = Movie.objects.filter(id=pk).first()
-            print(serializer)
-
-            return Response({'message': "hii"})
-        else:
-            return Response(
-                serializer.errors,
-                status=status.HTTP_400_BAD_REQUEST)
-
 
 class GenreViewSet(viewsets.ModelViewSet):
     queryset = Genre.objects.all()
